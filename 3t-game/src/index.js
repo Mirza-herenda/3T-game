@@ -1,6 +1,8 @@
 import MainPart from "./components/main";
 import  ReactDOM  from "react-dom/client";
-import "./App.css"
+import "../src/Css/App.css"
+import "../src/Css/LogIn.css"
+import "../src/Css/Buttons.css"
 import 'bootstrap/dist/css/bootstrap.css';
 
 const root=document.getElementById("root");

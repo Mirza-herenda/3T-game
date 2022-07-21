@@ -1,0 +1,32 @@
+.btn {
+    height: 50px;
+    width: 170px;
+    border: none;
+    font-size: 16px;
+    border-radius: 0 25px;
+    color: #fff;
+    background: linear-gradient(0.25turn, rgba(224, 235, 224, 0.753), rgba(175, 192, 175, 0.534), rgba(127, 136, 127, 0.548), green);
+}
+
+.Btn {
+    border: 3px solid rgba(1, 250, 22, 0.274);
+    height: 70px;
+    width: 70px;
+    font-weight: bold;
+    margin: 0.2em;
+}
+
+.BtnContainer {
+    display: flex;
+    margin-left: 12%;
+    gap: 30%
+}
+
+.btnF {
+    margin-left: 12%;
+}
+
+.closeBtn {
+    margin-left: 44%;
+    margin-top: 1%;
+}

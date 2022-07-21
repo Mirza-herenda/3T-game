@@ -227,6 +227,8 @@ const Board=({player1,player2})=>{
         setCounterDraw(0);
         setCounterPL1(0);
         setCounterPl2(0);
+        setHistory([]);
+        setCounterGames(0)
 
 
     }
@@ -290,8 +292,10 @@ const Board=({player1,player2})=>{
                 </tbody>
             </table>
             <span  className=" sp1 text-success">{message}</span>
-            <FuncBtn reset={reset}/>
-            <button hidden={false} id="btnListId" className="btnF btn-outline-success  bg-secondary text-light"  onClick={List}>List</button>
+           <div className="BtnContainer">
+           <FuncBtn p-1 reset={reset}/>
+            <button hidden={false} id="btnListId" className=" btnF btn-outline-success  bg-secondary text-light p-1"  onClick={List}>List</button>
+           </div>
         </div>
         </section>
         </section>

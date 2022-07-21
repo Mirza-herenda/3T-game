@@ -1,0 +1,137 @@
+.bg {
+    background: url("./components/images/3t.png") no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.input {
+    display: block;
+}
+
+.btn {
+    height: 50px;
+    width: 170px;
+    border: none;
+    font-size: 16px;
+    border-radius: 0 25px;
+    color: #fff;
+    background: linear-gradient(0.25turn, rgba(224, 235, 224, 0.753), rgba(175, 192, 175, 0.534), rgba(127, 136, 127, 0.548), green);
+}
+
+
+.form-container {
+    background-color: gray;
+    position: absolute;
+    top: 10vh;
+    margin-left: 3%;
+    padding: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    border: 3px solid rgba(5, 100, 13, 0.774);
+}
+
+.header {
+    background: linear-gradient(green, rgb(21, 126, 21), rgb(74, 124, 74), rgb(92, 124, 92));
+    margin-top: -2%;
+
+}
+
+
+
+
+.sp1 {
+    margin-left: 15%;
+}
+
+.spanClick {
+    font-size: xx-large;
+    font-weight: bold;
+
+}
+
+.modal-content {
+    margin-top: 20%;
+    background: linear-gradient(green, rgb(21, 126, 21), rgb(74, 124, 74), rgb(92, 124, 92));
+}
+
+span {
+    font-weight: bold;
+    text-align: center;
+}
+
+.spanHistory {
+    margin-left: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+.header {
+    text-align: center;
+}
+
+
+
+.output {
+    position: fixed;
+    top: 15vh;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid rgba(47, 0, 255, 0.274);
+}
+
+
+
+.btnF {
+    margin-left: 12%;
+}
+
+.closeBtn {
+    margin-left: 44%;
+    margin-top: 1%;
+}
+
+.historyDiv {
+    width: 350px;
+    height: 200px;
+    margin-top: 10%;
+    border: 3px solid rgba(5, 100, 13, 0.774);
+}
+
+.border {
+    background-color: rgba(245, 219, 219, 0.719);
+}
+
+.tableClass {
+    margin-top: 60%;
+    background-color: rgba(128, 128, 128, 0.459);
+    margin-left: 14%;
+}
+
+/*tablevpart*/
+table td {
+    border: 1px solid green;
+    width: 74px;
+    height: 70px;
+
+}
+
+
+.Btn {
+    border: 3px solid rgba(1, 250, 22, 0.274);
+    height: 70px;
+    width: 70px;
+    font-weight: bold;
+    margin: 0.2em;
+}
+
+.container {
+    display: inline;
+}
+
+.bigContainer {
+    background-color: red;
+}

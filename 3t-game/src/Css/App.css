@@ -60,6 +60,8 @@ span {
     height: 200px;
     margin-top: 10%;
     border: 3px solid rgba(5, 100, 13, 0.774);
+    background-color: rgba(128, 128, 128, 0.658);
+    box-shadow: 10px solid green;
 }
 
 .border {

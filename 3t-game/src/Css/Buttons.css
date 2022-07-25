@@ -16,6 +16,11 @@
     margin: 0.2em;
 }
 
+.btnStart {
+    margin-left: 35%;
+    margin-top: 10%;
+}
+
 .BtnContainer {
     display: flex;
     margin-left: 12%;
@@ -23,10 +28,26 @@
 }
 
 .btnF {
-    margin-left: 12%;
+    margin-left: 13%;
 }
 
 .closeBtn {
-    margin-left: 44%;
+    margin-left: 50%;
     margin-top: 1%;
+    width: 30px;
+    height: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .btnF {
+        margin-left: 23%;
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+    .btnF {
+        margin-left: 25%;
+        width: 60px;
+    }
 }

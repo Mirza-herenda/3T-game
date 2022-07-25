@@ -1,7 +1,7 @@
 
 
 
-const Modal=( {winner,newGame})=>{
+const EndGame=( {winner,newGame})=>{
 
 
 return(
@@ -10,7 +10,7 @@ return(
       <div className="modal-header">
       </div>
       <div className="modal-body">
-        <span className="text-light">YOU WIN:{winner}</span>
+        <span className="text-light"> {winner}</span>
       </div>
       <div className="modal-footer">
       <button  hidden= {false} id="funcId2" className="btnF btn-outline-success bg-secondary text-light" onClick={newGame} >Wanna try again</button>
@@ -20,4 +20,4 @@ return(
 );
 }
 
-export default Modal
+export default EndGame

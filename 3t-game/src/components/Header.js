@@ -1,14 +1,17 @@
 
 
-const Header=({counterPL1,counterPL2,counterDraw,player1,player2})=>{
+const Header=({counterPL1,counterPL2,counterDraw})=>{
 
     return(
 
             <div className="mainContainer">
-            <header className="header">
-             <span className="sp2 p-4">{player1}: <span className="miniSpan text-dark">{counterPL1}</span> </span>
-            <span className="sp2 p-4">{player2}: <span className="miniSpan text-dark">{counterPL2}</span></span>
-            <span className="sp2 p-4">draw: <span className="miniSpan text-dark">{counterDraw}</span> </span>
+            <header hidden={false} id="headerId" className="header text-light">
+            <span id="headerTittle" className="spanTittle">TIC TAC TOE</span>
+             <span id="headerSpan1" className="sp2 p-2"></span>
+             <span className="miniSpan p-2">:{counterPL1}</span>
+            <span id="headerSpan2"  className="sp2 p-2"></span>
+            <span className="miniSpan p-1">:{counterPL2}</span>
+            <span className="sp2 p-4">draw: <span className="miniSpan">{counterDraw}</span> </span>
             </header>
             </div>
     );

@@ -3,7 +3,8 @@ import { useState } from "react"
 import FuncBtn from "./Buttons/FunctionalButtons";
 import Header from "./Header"
 import HistoryWindow from "./HistoryWindow";
-import Modal from "../components/Modal"
+import EndGame from "../components/EndGame"
+
 const Board=({player1,player2})=>{
     const[TurnX,setTurnX]=useState("x")
     //kreiramo niz od 9 elemenata setovanih na prazan string
@@ -13,13 +14,16 @@ const Board=({player1,player2})=>{
     const[counterGames,setCounterGames]=useState(0);
     const[counterPL2,setCounterPl2]=useState(0);
     const[counterDraw,setCounterDraw]=useState(0);
-    const[winner,setWinner]=useState()
-    const[History,setHistory]=useState([])
-    let modalHidden=document.getElementById("modalLook");
+    const[winner,setWinner]=useState();
+    const[History,setHistory]=useState([]);
+    //pristupamo vrijednostima komponenti preko js:
+     let modalHidden=document.getElementById("modalLook");
     let game=document.getElementById("tableId");
     let inputShow=document.getElementById("logInPart");
     let buttonReset=document.getElementById("funcId2")
     let btnListId=document.getElementById("btnListId");
+    let header=document.getElementById("headerId");
+    let logIn=document.getElementById("formId");
 
 
     let RoundWinner="";
@@ -60,14 +64,13 @@ const Board=({player1,player2})=>{
     };
 
     //glavno ispitivanje pobjednika
-    if(!square.includes(""))
+    if(!square.includes("") && winner !=="x" && winner !=="o")
     {
-        setMessage(setWinner("DRAW"))
+        setMessage(setWinner("DRAW!"))
         setSquare(Array(9).fill(""))
         setCounterDraw(counterDraw+1);
-        RoundWinner="DRAW "
+        RoundWinner="DRAW!"
         setCounterGames(counterGames+1);
-        console.log(counterGames)
         setHistory([
             ...History,
             {
@@ -78,11 +81,11 @@ const Board=({player1,player2})=>{
               hour: new Date().getHours(),
               minute: new Date().getMinutes(),
               playerOne: player1,
-              playerTwo: player1,
+              playerTwo: player2,
               winner: "DRAW"
             }
           ]);
-        console.log(History)
+          localStorage.setItem("History",JSON.stringify(History))
         if(modalHidden.hidden===true)
         {
             modalHidden.hidden=false
@@ -97,28 +100,28 @@ const Board=({player1,player2})=>{
     }
    else if(winner==="x")
     {
-        setMessage(setWinner(player1))
+        setWinner( player1+ " WINS ")
        setSquare(Array(9).fill(""))
         setCounterPL1(counterPL1+1);
         RoundWinner=player1;
-        console.log(RoundWinner)
         setCounterGames(counterGames+1);
       
-        setHistory([
-            ...History,
-            {
-              id: new Date().getTime(),
-              NumberOfGames:counterGames,
-              day: new Date().getDate(),
-              month: new Date().getMonth() + 1,
-              hour: new Date().getHours(),
-              minute: new Date().getMinutes(),
-              playerOne: player1,
-              playerTwo: player1,
-              winner: player1
-            }
-          ]);
-        console.log(History)
+            setHistory([
+                ...History,
+                {
+                  id: new Date().getTime(),
+                  NumberOfGames:counterGames,
+                  day: new Date().getDate(),
+                  month: new Date().getMonth() + 1,
+                  hour: new Date().getHours(),
+                  minute: new Date().getMinutes(),
+                  playerOne: player1,
+                  playerTwo: player2,
+                  winner: player1
+                }
+              ]);
+              localStorage.setItem("History",JSON.stringify(History))
+          
         if(modalHidden.hidden===true)
         {
             modalHidden.hidden=false
@@ -132,7 +135,7 @@ const Board=({player1,player2})=>{
         }
  else if(winner==="o")
     {
-        setMessage(setWinner(player2))
+        setWinner( player2+ " WINS ")
         setSquare(Array(9).fill(""))
         setCounterPl2(counterPL2+1);
         console.log( player1+"broj pobjeda:"+counterPL2+1);
@@ -149,11 +152,11 @@ const Board=({player1,player2})=>{
               hour: new Date().getHours(),
               minute: new Date().getMinutes(),
               playerOne: player1,
-              playerTwo: player1,
+              playerTwo: player2,
               winner: player2
             }
           ]);
-        console.log(History)
+          localStorage.setItem("History",JSON.stringify(History));
 
         if(modalHidden.hidden===true)
         {
@@ -181,19 +184,17 @@ const Board=({player1,player2})=>{
        let boxes=[...square];
        if(TurnX==="x")
        {
-
-
            //popunjavamo niz sa x ako je na redu x
            boxes[position]="x"
            setTurnX("o");
-           setMessage(<span id="span" className=" sp1 text-success"> turn:{TurnX}</span>)
+           setMessage(<span id="span" className=" sp1 text-light"> its {player2}`s turn</span>)
          
        }
        else{
            //popunjavamo niz sa o ako je na redu o
            boxes[position]="o"
            setTurnX("x");
-           setMessage(<span id="span" className=" sp1 text-success"> turn:{TurnX}</span>)
+           setMessage(<span id="span" className=" sp1 text-light"> its {player1}`s turn</span>)
        }
        //setujemo vrijednost tako da budu zapamcene
        setSquare(boxes)
@@ -205,7 +206,7 @@ const Board=({player1,player2})=>{
    
    
     const Cell=({position})=>{
-        return <td  onClick={()=>clickHandler(position)}><span  id="spanClick"className="spanClick text-success d-flex justify-content-center">{square[position]}</span></td>
+        return <td  onClick={()=>clickHandler(position)}><span  id="spanClick"className="spanClick text-light d-flex justify-content-center">{square[position]}</span></td>
     }
 
     const newGame=()=>{
@@ -221,24 +222,29 @@ const Board=({player1,player2})=>{
 
         }
     }
-
     const reset=()=>{
-        setSquare(Array(9).fill(""))
-        setCounterDraw(0);
-        setCounterPL1(0);
-        setCounterPl2(0);
-        setHistory([]);
-        setCounterGames(0)
+         setSquare(Array(9).fill(""))
+         localStorage.clear()
+         window.location.reload();
 
+       
+        if(logIn.hidden===true)
+        {
+            logIn.hidden=false;
+            buttonReset.hidden=true;
+            btnListId.hidden=true;
+            game.hidden=true
+            
 
+        }
     }
-
     const List=()=>{
         let historyId=document.getElementById("historyId");
         let button=document.getElementById("closeBtnId");
         let buttonNG=document.getElementById("funcId2") 
         let buttonReset=document.getElementById("funcId2")
         let listBtn=document.getElementById("btnListId");
+        let  table=document.getElementById("tableId");
         if(historyId.hidden===true)
         {
             historyId.hidden=false;
@@ -247,15 +253,12 @@ const Board=({player1,player2})=>{
             buttonNG.hidden=true;
             buttonReset.hidden=true;
             listBtn.hidden=true;
+            header.hidden=true;
+            table.hidden=true;
      
-        }
-        else
-        {
-            console.log("blaa");
-        }
-     
-     
-     }
+        }     
+    }
+
     return(
         
         <div className="everything">
@@ -264,8 +267,6 @@ const Board=({player1,player2})=>{
          counterPL1={counterPL1}
         counterPL2={counterPL2}
         counterDraw={counterDraw}
-        player1={player1}
-        player2={player2}
         />
 
 
@@ -291,17 +292,14 @@ const Board=({player1,player2})=>{
                     </tr>
                 </tbody>
             </table>
-            <span  className=" sp1 text-success">{message}</span>
+            <span  className=" sp1 text-light">{message}</span>
            <div className="BtnContainer">
            <FuncBtn p-1 reset={reset}/>
-            <button hidden={false} id="btnListId" className=" btnF btn-outline-success  bg-secondary text-light p-1"  onClick={List}>List</button>
+            <button hidden={false} id="btnListId" className=" btnF btn-outline-success  bg-secondary text-light p-1"  onClick={List}>Show History</button>
            </div>
         </div>
         </section>
         </section>
-       
-  <Modal winner={winner} newGame={newGame}/>
-       
         <HistoryWindow List={List}
         History={History}
         counterGames={counterGames}
@@ -309,8 +307,11 @@ const Board=({player1,player2})=>{
              player2={player2}  
              winner={winner}
              //RoundWinner={RoundWinner}
+
              />
+              <EndGame winner={winner} newGame={newGame}/>
         </div>
+
       
     );
 }

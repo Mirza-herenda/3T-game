@@ -1,0 +1,14 @@
+.historyDiv {
+    width: 350px;
+    height: 200px;
+    margin-top: 5%;
+    border: 3px solid rgba(5, 100, 13, 0.774);
+    background-color: rgb(128, 128, 128);
+    box-shadow: 10px solid green;
+}
+
+.spanHistory {
+    margin-left: 10px;
+    display: inline-block;
+    text-align: center;
+}

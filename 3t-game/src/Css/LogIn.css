@@ -1,16 +1,35 @@
 .input {
     display: block;
+    width: 100%;
 }
+
+label {
+    margin-top: 10%;
+}
+
+.spanTitle {
+    font-size: large;
+    font-weight: bold;
+    margin-left: 20%;
+}
+
+.textPart {
+    margin-left: 15%;
+    margin-top: 15%;
+}
+
 
 .form-container {
     background-color: gray;
     position: absolute;
-    top: 10vh;
+    top: 20vh;
     margin-left: 3%;
     padding: 30px;
     border-radius: 10px;
     padding: 10px;
     border: 3px solid rgba(5, 100, 13, 0.774);
+    width: 300px;
+    height: 300px;
 }
 
 @media only screen and (max-width: 600px) {

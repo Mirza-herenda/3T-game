@@ -12,9 +12,14 @@
 }
 
 .header {
-    background: linear-gradient(green, rgb(21, 126, 21), rgb(74, 124, 74), rgb(92, 124, 92));
-    margin-top: -2%;
+    background: linear-gradient(rgb(119, 180, 119), rgb(54, 168, 54), rgb(74, 124, 74), rgb(92, 124, 92));
+    margin-top: -3%;
 
+}
+
+#historyId {
+    font-size: large;
+    font-weight: bold;
 }
 
 .sp1 {
@@ -37,12 +42,6 @@ span {
     text-align: center;
 }
 
-.spanHistory {
-    margin-left: 10px;
-    display: inline-block;
-    text-align: center;
-}
-
 .header {
     text-align: center;
 }
@@ -55,32 +54,35 @@ span {
     border: 1px solid rgba(47, 0, 255, 0.274);
 }
 
-.historyDiv {
-    width: 350px;
-    height: 200px;
-    margin-top: 10%;
-    border: 3px solid rgba(5, 100, 13, 0.774);
-    background-color: rgba(128, 128, 128, 0.658);
-    box-shadow: 10px solid green;
-}
 
 .border {
     background-color: rgba(245, 219, 219, 0.719);
 }
 
+.spanTittle {
+    float: left;
+}
+
 .tableClass {
-    margin-top: 60%;
+    margin-top: 30%;
     background-color: rgba(128, 128, 128, 0.459);
     margin-left: 14%;
 }
 
 table td {
     border: 1px solid green;
-    width: 74px;
-    height: 70px;
+    width: 100px;
+    height: 90px;
 
 }
 
+.sp2 {
+    font-size: large;
+}
+
+.miniSpan {
+    font-size: large;
+}
 
 .container {
     display: inline;
@@ -90,4 +92,35 @@ table td {
     .historyDiv {
         margin-top: 40%;
     }
+
+    .header {
+        background: linear-gradient(green, rgb(21, 126, 21), rgb(74, 124, 74), rgb(92, 124, 92));
+        margin-top: 2%;
+
+    }
+
+    table td {
+        border: 1px solid green;
+    }
+
+    section {
+        margin-left: -10%;
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+    table td {
+        border: 1px solid green;
+        width: 300px;
+
+    }
+
+    .header {
+        background: linear-gradient(green, rgb(21, 126, 21), rgb(74, 124, 74), rgb(92, 124, 92));
+        margin-top: -4%;
+
+    }
+
+
 }

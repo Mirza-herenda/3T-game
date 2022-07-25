@@ -3,6 +3,8 @@ import  ReactDOM  from "react-dom/client";
 import "../src/Css/App.css"
 import "../src/Css/LogIn.css"
 import "../src/Css/Buttons.css"
+import "../src/Css/HistoryWindow.css"
+
 import 'bootstrap/dist/css/bootstrap.css';
 
 const root=document.getElementById("root");

@@ -28,7 +28,7 @@
      }
   
 
-  }
+  } 
  
   
 
@@ -37,7 +37,8 @@
    <div hidden={true} id="historyId" className=" historyDiv mx-auto text-light">
     <h5 id="title" className="text-success d-flex justify-content-center">CURRENT GAMES</h5>
    <h6 id="historyOfGames">{History.map(index=>(
-      <span id="historyOfGames" className="spanHistory" key={index.id}>< span id="historyOfGames" className="text-success" key={index.id}>game#: {index.NumberOfGames } </span>
+      <span id="historyOfGames" className="spanHistory" key={index.id}>
+      < span id="historyOfGames" className="text-success" key={index.id}>game#: {index.Game } </span>
       {index.day}.{index.month}   {index.hour}.{index.minute} {index.playerOne} vs {index.playerTwo} {index.winner}</span>
     ))}</h6>
 {/* 

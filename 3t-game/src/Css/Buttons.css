@@ -14,6 +14,7 @@
     width: 70px;
     font-weight: bold;
     margin: 0.2em;
+
 }
 
 .btnStart {
@@ -28,7 +29,7 @@
 }
 
 .btnF {
-    margin-left: 13%;
+    margin-left: -10%;
 }
 
 .closeBtn {
@@ -38,16 +39,29 @@
     height: 30px;
 }
 
-@media only screen and (max-width: 600px) {
-    .btnF {
-        margin-left: 23%;
+/*tablet*/
+@media screen and (min-width: 768px) {
+    #btnListId {
+        margin-left: 9%;
+    }
+
+    #funcId2 {
+        margin-left: -80%;
     }
 
 }
 
-@media only screen and (max-width: 1200px) {
-    .btnF {
-        margin-left: 25%;
-        width: 60px;
+/*laptop*/
+@media screen and (min-width: 1104px) {
+    #btnListId {
+        margin-left: 0%;
     }
+}
+
+/*desktop*/
+@media screen and (min-width: 1200px) {
+    #btnListId {
+        margin-left: -11%;
+    }
+
 }

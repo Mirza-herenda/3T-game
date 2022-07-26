@@ -6,6 +6,8 @@ import HistoryWindow from "./HistoryWindow";
 import EndGame from "../components/EndGame"
 
 const Board=({player1,player2})=>{
+   
+
     const[TurnX,setTurnX]=useState("x")
     //kreiramo niz od 9 elemenata setovanih na prazan string
     const[square,setSquare]=useState(Array(9).fill(""));
@@ -25,8 +27,6 @@ const Board=({player1,player2})=>{
     let header=document.getElementById("headerId");
     let logIn=document.getElementById("formId");
 
-
-    let RoundWinner="";
 
     const WinningLogic=(boxes)=>{
         let combinations={
@@ -69,23 +69,39 @@ const Board=({player1,player2})=>{
         setMessage(setWinner("DRAW!"))
         setSquare(Array(9).fill(""))
         setCounterDraw(counterDraw+1);
-        RoundWinner="DRAW!"
         setCounterGames(counterGames+1);
         setHistory([
             ...History,
             {
-              id: new Date().getTime(),
-              NumberOfGames:counterGames,
+              id: counterGames+1,
+              Game:counterGames+1,
               day: new Date().getDate(),
               month: new Date().getMonth() + 1,
               hour: new Date().getHours(),
               minute: new Date().getMinutes(),
-              playerOne: player1,
-              playerTwo: player2,
+              playerOne: JSON.parse(localStorage.getItem("player1")),
+              playerTwo: JSON.parse(localStorage.getItem("player2")),
               winner: "DRAW"
-            }
-          ]);
-          localStorage.setItem("History",JSON.stringify(History))
+            }]
+          );
+
+          localStorage.setItem("History",JSON.stringify([
+            ...History,
+            {
+              
+                id:counterGames+1,
+                Game:counterGames+1,
+                day: new Date().getDate(),
+                month: new Date().getMonth() + 1,
+                hour: new Date().getHours(),
+                minute: new Date().getMinutes(),
+                playerOne: JSON.parse(localStorage.getItem("player1")),
+                playerTwo: JSON.parse(localStorage.getItem("player2")),
+                winner: "DRAW",
+                
+              }
+
+          ]));
         if(modalHidden.hidden===true)
         {
             modalHidden.hidden=false
@@ -93,6 +109,8 @@ const Board=({player1,player2})=>{
             inputShow=true;
             buttonReset.hidden=true
             btnListId.hidden=true;
+            header.hidden=true;
+            setMessage("")
         }
 
 
@@ -103,25 +121,42 @@ const Board=({player1,player2})=>{
         setWinner( player1+ " WINS ")
        setSquare(Array(9).fill(""))
         setCounterPL1(counterPL1+1);
-        RoundWinner=player1;
         setCounterGames(counterGames+1);
       
             setHistory([
                 ...History,
                 {
-                  id: new Date().getTime(),
-                  NumberOfGames:counterGames,
-                  day: new Date().getDate(),
-                  month: new Date().getMonth() + 1,
-                  hour: new Date().getHours(),
-                  minute: new Date().getMinutes(),
-                  playerOne: player1,
-                  playerTwo: player2,
-                  winner: player1
-                }
+                  
+                    id:counterGames+1,
+                    Game:counterGames+1,
+                    day: new Date().getDate(),
+                    month: new Date().getMonth() + 1,
+                    hour: new Date().getHours(),
+                    minute: new Date().getMinutes(),
+                    playerOne: JSON.parse(localStorage.getItem("player1")),
+                    playerTwo: JSON.parse(localStorage.getItem("player2")),
+                    winner: player1,
+                    
+                  }
               ]);
-              localStorage.setItem("History",JSON.stringify(History))
           
+              localStorage.setItem("History",JSON.stringify([
+                ...History,
+                {
+                  
+                    id:counterGames+1,
+                    Game:counterGames+1,
+                    day: new Date().getDate(),
+                    month: new Date().getMonth() + 1,
+                    hour: new Date().getHours(),
+                    minute: new Date().getMinutes(),
+                    playerOne: JSON.parse(localStorage.getItem("player1")),
+                    playerTwo: JSON.parse(localStorage.getItem("player2")),
+                    winner: player1,
+                    
+                  }
+
+              ]));
         if(modalHidden.hidden===true)
         {
             modalHidden.hidden=false
@@ -129,8 +164,9 @@ const Board=({player1,player2})=>{
             inputShow.hidden=true;
             buttonReset.hidden=true
             btnListId.hidden=true
+            header.hidden=true;
+            setMessage("")
         }
-
         
         }
  else if(winner==="o")
@@ -139,25 +175,39 @@ const Board=({player1,player2})=>{
         setSquare(Array(9).fill(""))
         setCounterPl2(counterPL2+1);
         console.log( player1+"broj pobjeda:"+counterPL2+1);
-        RoundWinner=player2
         setCounterGames(counterGames+1);
-        console.log(RoundWinner)
         setHistory([
             ...History,
             {
-              id: new Date().getTime(),
-              NumberOfGames:counterGames,
+              id:counterGames+1,
+              Game:counterGames+1,
               day: new Date().getDate(),
               month: new Date().getMonth() + 1,
               hour: new Date().getHours(),
               minute: new Date().getMinutes(),
-              playerOne: player1,
-              playerTwo: player2,
+              playerOne: JSON.parse(localStorage.getItem("player1")),
+              playerTwo: JSON.parse(localStorage.getItem("player2")),
               winner: player2
             }
           ]);
-          localStorage.setItem("History",JSON.stringify(History));
 
+          localStorage.setItem("History",JSON.stringify([
+            ...History,
+            {
+              
+                id:counterGames+1,
+                Game:counterGames+1,
+                day: new Date().getDate(),
+                month: new Date().getMonth() + 1,
+                hour: new Date().getHours(),
+                minute: new Date().getMinutes(),
+                playerOne: JSON.parse(localStorage.getItem("player1")),
+                playerTwo: JSON.parse(localStorage.getItem("player2")),
+                winner: player1,
+                
+              }
+
+          ]));
         if(modalHidden.hidden===true)
         {
             modalHidden.hidden=false
@@ -165,6 +215,8 @@ const Board=({player1,player2})=>{
             inputShow.hidden=true;
             buttonReset.hidden=true
             btnListId.hidden=true
+            header.hidden=true;
+            setMessage("")
         }
 
     }
@@ -188,6 +240,7 @@ const Board=({player1,player2})=>{
            boxes[position]="x"
            setTurnX("o");
            setMessage(<span id="span" className=" sp1 text-light"> its {player2}`s turn</span>)
+           localStorage.setItem("player1",JSON.stringify(player1))
          
        }
        else{
@@ -195,6 +248,7 @@ const Board=({player1,player2})=>{
            boxes[position]="o"
            setTurnX("x");
            setMessage(<span id="span" className=" sp1 text-light"> its {player1}`s turn</span>)
+           localStorage.setItem("player2",JSON.stringify(player2))
        }
        //setujemo vrijednost tako da budu zapamcene
        setSquare(boxes)
@@ -203,7 +257,6 @@ const Board=({player1,player2})=>{
 
        }
     }
-   
    
     const Cell=({position})=>{
         return <td  onClick={()=>clickHandler(position)}><span  id="spanClick"className="spanClick text-light d-flex justify-content-center">{square[position]}</span></td>
@@ -219,6 +272,7 @@ const Board=({player1,player2})=>{
             inputShow.hidden=false;
             buttonReset.hidden=false
             btnListId.hidden=false
+            header.hidden=false;
 
         }
     }
@@ -255,6 +309,7 @@ const Board=({player1,player2})=>{
             listBtn.hidden=true;
             header.hidden=true;
             table.hidden=true;
+            setMessage("")
      
         }     
     }

@@ -5,7 +5,7 @@ const Header=({counterPL1,counterPL2,counterDraw})=>{
     return(
 
             <div className="mainContainer">
-            <header hidden={false} id="headerId" className="header text-light">
+            <header hidden={true} id="headerId" className="header text-light">
             <span id="headerTittle" className="spanTittle">TIC TAC TOE</span>
              <span id="headerSpan1" className="sp2 p-2"></span>
              <span className="miniSpan p-2">:{counterPL1}</span>

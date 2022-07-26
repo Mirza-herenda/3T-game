@@ -13,7 +13,10 @@
 
 .header {
     background: linear-gradient(rgb(119, 180, 119), rgb(54, 168, 54), rgb(74, 124, 74), rgb(92, 124, 92));
-    margin-top: -3%;
+    margin-top: 0%;
+    padding: 0%;
+    width: 100%;
+    text-align: center;
 
 }
 
@@ -42,19 +45,6 @@ span {
     text-align: center;
 }
 
-.header {
-    text-align: center;
-}
-
-.output {
-    position: fixed;
-    top: 15vh;
-    border-radius: 10px;
-    padding: 5px;
-    border: 1px solid rgba(47, 0, 255, 0.274);
-}
-
-
 .border {
     background-color: rgba(245, 219, 219, 0.719);
 }
@@ -66,61 +56,110 @@ span {
 .tableClass {
     margin-top: 30%;
     background-color: rgba(128, 128, 128, 0.459);
-    margin-left: 14%;
+    justify-content: center;
 }
 
 table td {
     border: 1px solid green;
     width: 100px;
-    height: 90px;
+    height: 100px;
+    box-sizing: border-box;
 
 }
 
-.sp2 {
-    font-size: large;
-}
 
 .miniSpan {
     font-size: large;
 }
 
-.container {
-    display: inline;
-}
-
-@media only screen and (max-width: 600px) {
-    .historyDiv {
-        margin-top: 40%;
-    }
-
+/*mobile*/
+@media screen and (min-width: 370px) {
     .header {
-        background: linear-gradient(green, rgb(21, 126, 21), rgb(74, 124, 74), rgb(92, 124, 92));
-        margin-top: 2%;
+        margin-top: 0%;
+    }
+
+    section .form-container {
+        margin-left: 12%;
 
     }
 
     table td {
-        border: 1px solid green;
+        border: 2px solid green;
     }
 
-    section {
-        margin-left: -10%;
+    section #tableDiv {
+        width: 500px;
+        height: 300px;
+        margin-left: 10%;
+        /* background: rgb(0, 255, 115); */
     }
-
 }
 
-@media only screen and (max-width: 1200px) {
-    table td {
-        border: 1px solid green;
+/*tablet*/
+@media screen and (min-width: 768px) {
+    .header {
+        margin-top: 0%;
+    }
+
+    section .form-container {
+        margin-left: -4%;
+
+    }
+
+
+    section #tableDiv {
         width: 300px;
-
+        height: 300px;
+        margin-left: -12%;
+        /* background: red; */
     }
 
+    .modal-content {
+        margin-top: 4%;
+    }
+
+}
+
+/*laptop*/
+@media screen and (min-width: 1104px) {
     .header {
-        background: linear-gradient(green, rgb(21, 126, 21), rgb(74, 124, 74), rgb(92, 124, 92));
-        margin-top: -4%;
+        margin-top: 0.5%;
+    }
+
+    section .form-container {
+        margin-left: 1%;
 
     }
 
+    section #tableDiv {
+        width: 400px;
+        height: 300px;
+        justify-content: center;
+        /* background: blue; */
+    }
+
+    .modal-content {
+        margin-top: 4%;
+    }
+}
+
+/*desktop*/
+@media screen and (min-width: 1200px) {
+    section #tableDiv {
+        width: 500px;
+        height: 300px;
+        margin-left: 12%;
+        /* background: yellow; */
+    }
+
+    section .form-container {
+        margin-top: 2%;
+        justify-content: center;
+        position: absolute;
+    }
+
+    .sp1 {
+        margin-left: 10%;
+    }
 
 }

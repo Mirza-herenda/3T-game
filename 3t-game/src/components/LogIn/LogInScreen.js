@@ -67,7 +67,7 @@ import Board from "../Board";
         <>
         <button  id="btnShow" hidden={false} type="button" className="btn position-absolute top-50 start-50 translate-middle" onClick={showGame}>START THE GAME</button>
          <section hidden={true} id="logInPart" className="container">
-            <section  className="row justify-content-center">
+            <section  className="sectionLogin row justify-content-center">
             <section className="col 12 col-sm-6 col-md-3">
             <form hidden={false} id="formId" className="form-container">
                 <>

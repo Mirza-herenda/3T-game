@@ -312,6 +312,7 @@ const Board=({player1,player2})=>{
             setMessage("")
      
         }     
+        console.log(JSON.parse(localStorage.getItem("History")))
     }
 
     return(

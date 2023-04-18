@@ -2,39 +2,51 @@ const HistoryWindowVsPc = ({
   HistoryvsPC,
   showHistoryOfGames,
   setShowHistoryOfGames,
-  setshowtableVsPlayer,
+  setshowtableVsPc,
 }) => {
   const closeBtn = () => {
     setShowHistoryOfGames(true);
-    setshowtableVsPlayer(false);
+    setshowtableVsPc(false);
   };
 
   return (
     <div className="container" hidden={showHistoryOfGames}>
       <div id="historyId" className=" historyDiv mx-auto text-light">
-        <h5 id="title" className="text-success d-flex justify-content-center">
+        <h5 id="title" className="text">
           Player vs Personal PC
         </h5>
-        <h6 id="historyOfGames">
-          {HistoryvsPC.map((index) => (
-            <span id="historyOfGames" className="spanHistory" key={index.id}>
-              <span id="historyOfGames" className="text-success" key={index.id}>
-                <span style={{ color: "orange" }}> game#: {index.Game} </span>
-              </span>
-              {index.day}.{index.month} {index.hour}.{index.minute}{" "}
-              {index.playerOne} vs {index.PersonalComputer} {index.level}{" "}
-              <span style={{ color: "orange" }}>{index.winner}</span>
-            </span>
-          ))}
-        </h6>
+        <table>
+          <thead>
+            <tr>
+              <th>Game #</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Player One</th>
+              <th>Level</th>
+              <th>Winner</th>
+            </tr>
+          </thead>
+          <tbody>
+            {HistoryvsPC.map((index, i) => (
+              <tr key={i.id} className="tableRow">
+                <td>{i + 1}</td>
+                <td>
+                  {index.month}.{index.day}
+                </td>
+                <td>
+                  {index.hour}.{index.minute}
+                </td>
+                <td>{index.playerOne}</td>
+                <td>{index.level}</td>
+                <td style={{ color: "orange" }}>{index.winner}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button id="closeBtnId" className="closeBtn" onClick={closeBtn}>
+          x
+        </button>
       </div>
-      <button
-        id="closeBtnId"
-        className="closeBtn btn-outline-success bg-secondary text-light"
-        onClick={closeBtn}
-      >
-        x
-      </button>
     </div>
   );
 };

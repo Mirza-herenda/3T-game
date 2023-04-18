@@ -12,28 +12,42 @@ const HistoryWindow = ({
   return (
     <div className="container" hidden={showHistoryOfGames}>
       <div id="historyId" className=" historyDiv mx-auto text-light">
-        <h5 id="title" className="text-success d-flex justify-content-center">
-          CURRENT GAMES
+        <h5 id="title" className="text">
+          player 1 vs player 2
         </h5>
-        <h6 id="historyOfGames">
-          {HistoryvsPlayer.map((index) => (
-            <span id="historyOfGames" className="spanHistory" key={index.id}>
-              <span id="historyOfGames" className="text" key={index.id}>
-                game#: {index.Game}{" "}
-              </span>
-              {index.day}.{index.month} {index.hour}.{index.minute}{" "}
-              {index.playerOne} vs {index.playerTwo} {index.winner}
-            </span>
-          ))}
-        </h6>
+        <table>
+          <thead>
+            <tr>
+              <th>Game #</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Player One</th>
+              <th>Player Two</th>
+              <th>Winner</th>
+            </tr>
+          </thead>
+          <tbody>
+            {HistoryvsPlayer.map((index, i) => (
+              <tr key={i.id} className="tableRow">
+                <td>{i + 1}</td>
+                <td>
+                  {index.month}.{index.day}
+                </td>
+                <td>
+                  {index.hour}.{index.minute}
+                </td>
+                <td>{index.playerOne}</td>
+                <td>{index.playerTwo}</td>
+                <td style={{ color: "orange" }}>{index.winner}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <button id="closeBtnId" className="closeBtn" onClick={closeBtn}>
+          x
+        </button>
       </div>
-      <button
-        id="closeBtnId"
-        className="closeBtn btn-outline-success bg-secondary text-light"
-        onClick={closeBtn}
-      >
-        x
-      </button>
     </div>
   );
 };

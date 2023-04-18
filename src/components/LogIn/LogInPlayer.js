@@ -27,6 +27,8 @@ const LogInPlayer = ({
       setshowtableVsPc(true);
       setshowtableVsPlayer(false);
       setshowLogIn(true);
+      localStorage.setItem("player1", JSON.stringify(player1));
+      localStorage.setItem("player2", JSON.stringify(player2));
       setMsg(
         <span hidden={false} className=" bg-light">
           OK

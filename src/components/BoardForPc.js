@@ -3,7 +3,7 @@ import Field from "./Field";
 import EndGame from "./EndGame";
 import HistoryWindowVsPc from "../components/HistoryVsPc";
 
-function BoardForPc({ showtableVsPc, player1, selectedLvl, setPlayer1 }) {
+function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
   const [box, setBox] = useState(Array(9).fill(null));
   const [winner, setwinner] = useState("");
   const [showmodal, setShowmodal] = useState(true);
@@ -18,6 +18,8 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setPlayer1 }) {
   const [counterGames, setCounterGames] = useState(0);
   const [HistoryvsPC, setHistoryvsPC] = useState([]);
   const [showHistoryOfGames, setShowHistoryOfGames] = useState(true);
+
+  //mobile part
 
   const linesOfGrid = [
     [0, 1, 2],
@@ -127,7 +129,6 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setPlayer1 }) {
       setHistoryvsPC([
         ...HistoryvsPC,
         {
-          id: counterGames + 1,
           Game: counterGames + 1,
           level: selectedLvl,
           day: new Date().getDate(),
@@ -147,7 +148,6 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setPlayer1 }) {
         JSON.stringify([
           ...HistoryvsPC,
           {
-            id: counterGames + 1,
             Game: counterGames + 1,
             level: selectedLvl,
             day: new Date().getDate(),
@@ -177,7 +177,6 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setPlayer1 }) {
       setHistoryvsPC([
         ...HistoryvsPC,
         {
-          id: counterGames + 1,
           Game: counterGames + 1,
           day: new Date().getDate(),
           month: new Date().getMonth() + 1,
@@ -212,10 +211,10 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setPlayer1 }) {
       );
     }
 
-    // if (!computerWon && !playerWom) {
-    //   console.log("draw");
-    //   setCounterDraw(counterDraw + 1);
-    // }
+    if (!box.includes(null) && !computerWon && !playerWom) {
+      console.log("draw");
+      setCounterDraw(counterDraw + 1);
+    }
   }, [box, counterPC, counterPL1, player1, selectedLvl, History]);
 
   function clickField(index) {
@@ -246,53 +245,58 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setPlayer1 }) {
   const HistoryList = () => {
     setShowHistoryOfGames(false);
     console.log(HistoryvsPC);
+    setshowtableVsPc(true);
+    setShowmodal(true);
   };
   //save player
 
   return (
-    <div
-      className="wrapper"
-      style={{ display: showtableVsPc ? "none" : "block" }}
-    >
-      <div className="board" hidden={showtableVsPc}>
-        {box.map((obj, index) => (
-          <Field
-            x={obj === "x" ? 1 : 0}
-            o={obj === "o" ? 1 : 0}
-            key={index}
-            onClick={() => clickField(index)}
-          />
-        ))}
+    <>
+      <div
+        className="wrapper"
+        style={{ display: showtableVsPc ? "none" : "block" }}
+      >
+        <div className="board" hidden={showtableVsPc}>
+          {box.map((obj, index) => (
+            <Field
+              x={obj === "x" ? 1 : 0}
+              o={obj === "o" ? 1 : 0}
+              key={index}
+              onClick={() => clickField(index)}
+            />
+          ))}
+        </div>
+        <div className="BtnContainer">
+          <button onClick={reset} id="btnR" className="btnH">
+            reset last move
+          </button>
+          <button
+            hidden={false}
+            id="btnListId"
+            className=" btnF"
+            onClick={HistoryList}
+          >
+            Show History
+          </button>
+        </div>
+        <div className="info">
+          <span>
+            Player 1: <span style={{ color: "orange" }}>{player1}:</span>
+            <span style={{ color: "orange" }}>{counterPL1}</span>
+          </span>
+          <span>
+            PC: <span style={{ color: "orange" }}>PC:</span>
+            <span style={{ color: "orange" }}>{counterPC}</span>
+          </span>
+          <span>
+            draw: <span style={{ color: "orange" }}>{counterDraw}</span>
+          </span>
+          <span>
+            level: <span style={{ color: "orange" }}>{selectedLvl}</span>
+          </span>
+        </div>
       </div>
-      <div className="BtnContainer">
-        <button onClick={reset} className="btnF">
-          reset last move
-        </button>
-        <button
-          hidden={false}
-          id="btnListId"
-          className=" btnF"
-          onClick={HistoryList}
-        >
-          Show History
-        </button>
-      </div>
-      <div className="info">
-        <span>
-          Player 1: <span style={{ color: "orange" }}>{player1}:</span>
-          <span style={{ color: "orange" }}>{counterPL1}</span>
-        </span>
-        <span>
-          PC: <span style={{ color: "orange" }}>PC:</span>
-          <span style={{ color: "orange" }}>{counterPC}</span>
-        </span>
-        <span>
-          draw: <span style={{ color: "orange" }}>{counterDraw}</span>
-        </span>
-        <span>
-          level: <span style={{ color: "orange" }}>{selectedLvl}</span>
-        </span>
-      </div>
+
       <HistoryWindowVsPc
         HistoryList={HistoryList}
         HistoryvsPC={HistoryvsPC}
@@ -301,9 +305,11 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setPlayer1 }) {
         winner={winner}
         showHistoryOfGames={showHistoryOfGames}
         setShowHistoryOfGames={setShowHistoryOfGames}
+        setshowtableVsPc={setshowtableVsPc}
       />
+
       <EndGame winner={winner} showmodal={showmodal} newGame={newGame} />
-    </div>
+    </>
   );
 }
 

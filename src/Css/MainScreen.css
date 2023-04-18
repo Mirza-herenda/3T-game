@@ -42,3 +42,11 @@ h3{
 .btn2:hover{
     background-color: lightgray;
 }
+
+/*media quary*/
+
+@media screen and (max-width:600px) {
+   .btn2{
+    margin-top: 6%;
+   }
+}

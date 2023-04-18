@@ -1,17 +1,59 @@
 .historyDiv {
-    width: 350px;
+    width: 500px;
     height: 200px;
-    margin-top: 5%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border: 1px solid orange;
     background-color: rgb(128, 128, 128);
     box-shadow: 10px solid green;
+    overflow: scroll;
 }
-
-.spanHistory {
-    margin-left: 10px;
-    display: inline-block;
+table{
+    margin-left: 4%;
+    border: 1px solid rgba(255, 166, 0, 0.658);
+}
+table th{
+    border: 1px solid rgba(255, 166, 0, 0.685);
     text-align: center;
+}
+ table td{
+    border: 1px solid rgba(255, 166, 0, 0.644);
+    text-align: center;
+    justify-content: center;
+    row-gap: 10px;
+    color: black;
+}
+.text{
+    text-align: center;
+    color: black;
 }
 #historyOfGames{
     color: black !important;
+}
+.closeBtn{
+    width: 27px;
+    height: 30px;
+    background-color: gray;
+    color: white;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
+
+@media screen and (max-width:600px) {
+    .historyDiv{
+        width: 350px;
+    }
+    table th{
+        font-size: medium;
+    }
+    table td{
+        font-size: medium;
+    }
+    table{
+        margin-left: 2%;
+    }
+    
 }

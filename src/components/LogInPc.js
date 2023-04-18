@@ -12,37 +12,40 @@ const LogInScreenPc = ({
   const [msg2, setMsg2] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [selectedLvl, setSelectedLvl] = useState(null);
+  const [activeColor, setActiveColor] = useState(-1);
   const [level, setlevel] = useState([
     {
       lvl: 1,
       name: "easy",
+      color: "green",
     },
     {
       lvl: 2,
       name: "medium",
+      color: "orange",
     },
     {
       lvl: 3,
       name: "hard",
+      color: "red",
     },
   ]);
 
   const chooseLevel = (index) => {
     setSelectedLvl(level[index].name);
+    setActiveColor(index);
   };
 
   const clickHandler2 = (e) => {
     const regex = /^[A-Za-z]+$/;
     if (player1 === "") {
-      setMsg(<span className="  bg-light text-danger">please enter name</span>);
+      setMsg(<span className="emptySpan">please enter name</span>);
     } else if (regex.test(player1) === false) {
-      setMsg(
-        <span className="  bg-light text-danger">numbers are not allowed</span>
-      );
+      setMsg(<span className="numSpan">numbers are not allowed</span>);
       setBtnDisabled(true);
     } else if (selectedLvl === null) {
       console.log("lvl nije izabran");
-      setMsg2(<span>nije ok</span>);
+      setMsg2(<span className="ErrorSpan">you need to choose level</span>);
     } else {
       setshowLogInPc(true);
       setshowtableVsPc(false);
@@ -75,12 +78,16 @@ const LogInScreenPc = ({
                   className="input"
                 ></input>
               </>
-              <span>please choose level</span>
+              <span className="textPart">{msg}</span>
+              <span className="lvlPickSpan">please choose level</span>
               {level.map((lvl, index) => (
                 <div
                   className="levels"
                   key={index}
                   onClick={() => chooseLevel(index)}
+                  style={{
+                    color: activeColor === index ? lvl.color : "black",
+                  }}
                 >
                   {lvl.name}
                 </div>
@@ -94,7 +101,6 @@ const LogInScreenPc = ({
               >
                 START GAME
               </button>
-              <span className="textPart text-light bg-secondary">{msg}</span>
             </form>
           </section>
         </section>
@@ -105,6 +111,7 @@ const LogInScreenPc = ({
         showtableVsPc={showtableVsPc}
         selectedLvl={selectedLvl}
         setPlayer1={setPlayer1}
+        setshowtableVsPc={setshowtableVsPc}
       />
     </>
   );

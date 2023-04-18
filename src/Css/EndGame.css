@@ -1,7 +1,19 @@
 .modal-content {
   background-color: gray !important;
+  width: 300px !important;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
 }
-.modal-header,.modal-body{
+.modal-header,.modal-body,.modal-footer{
     border-bottom: 1px solid orange;
-}
 
+}
+@media  screen and (max-width:600px) {
+  .modal-content{
+    top:70%
+  }
+  
+}

@@ -4,7 +4,12 @@ import EndGame from "./EndGame";
 import Field from "./Field";
 import ".//..//Css/Board.css";
 
-const BoardForPlayer = ({ player1, player2, showtableVsPlayer }) => {
+const BoardForPlayer = ({
+  player1,
+  player2,
+  showtableVsPlayer,
+  setshowtableVsPlayer,
+}) => {
   const [box, setBox] = useState(Array(9).fill(null));
   const [showmodal, setShowmodal] = useState(true);
   const [winner, setwinner] = useState("");
@@ -53,6 +58,28 @@ const BoardForPlayer = ({ player1, player2, showtableVsPlayer }) => {
   useEffect(() => {
     const player1Wom = checklines("x", "x", "x").length > 0;
     const player2Wom = checklines("o", "o", "o").length > 0;
+
+    if (!box.includes(null) && !player1Wom && !player2Wom) {
+      setwinner(" its draw");
+      setShowmodal(false);
+      setBox(Array(9).fill(null));
+      setCounterDraw(counterDraw + 1);
+
+      setHistoryvsPlayer([
+        ...HistoryvsPlayer,
+        {
+          id: counterGames + 1,
+          Game: counterGames + 1,
+          day: new Date().getDate(),
+          month: new Date().getMonth() + 1,
+          hour: new Date().getHours(),
+          minute: new Date().getMinutes(),
+          playerOne: JSON.parse(localStorage.getItem("player1")),
+          playerTwo: JSON.parse(localStorage.getItem("player2")),
+          winner: "draw",
+        },
+      ]);
+    }
     if (player1Wom) {
       setShowmodal(false);
       setwinner(player1 + "is winner");
@@ -72,6 +99,24 @@ const BoardForPlayer = ({ player1, player2, showtableVsPlayer }) => {
           winner: player1,
         },
       ]);
+
+      localStorage.setItem(
+        "History",
+        JSON.stringify([
+          ...HistoryvsPlayer,
+          {
+            id: counterGames + 1,
+            Game: counterGames + 1,
+            day: new Date().getDate(),
+            month: new Date().getMonth() + 1,
+            hour: new Date().getHours(),
+            minute: new Date().getMinutes(),
+            playerOne: JSON.parse(localStorage.getItem("player1")),
+            playerTwo: JSON.parse(localStorage.getItem("player2")),
+            winner: player1,
+          },
+        ])
+      );
     }
     if (player2Wom) {
       setShowmodal(false);
@@ -111,49 +156,53 @@ const BoardForPlayer = ({ player1, player2, showtableVsPlayer }) => {
   }
   const HistoryList = () => {
     setShowHistoryOfGames(false);
+    setshowtableVsPlayer(true);
+    setShowmodal(true);
     console.log(HistoryvsPlayer);
   };
 
   return (
-    <div
-      className="wrapper"
-      style={{ display: showtableVsPlayer ? "none" : "block" }}
-    >
-      <div className="board" hidden={showtableVsPlayer}>
-        {box.map((obj, index) => (
-          <Field
-            x={obj === "x" ? 1 : 0}
-            o={obj === "o" ? 1 : 0}
-            key={index}
-            onClick={() => clickField(index)}
-          />
-        ))}
-      </div>
-      <div className="BtnContainer">
-        <button onClick={reset} className="btnF">
-          reset last move
-        </button>
-        <button
-          hidden={false}
-          id="btnListId"
-          className=" btnF"
-          onClick={HistoryList}
-        >
-          Show History
-        </button>
-      </div>
-      <div className="info">
-        <span>
-          Player 1: <span style={{ color: "orange" }}>{player1}:</span>
-          <span style={{ color: "orange" }}>{counterPL1}</span>
-        </span>
-        <span>
-          player 2: <span style={{ color: "orange" }}>{player2}:</span>
-          <span style={{ color: "orange" }}>{counterPL2}</span>
-        </span>
-        <span>
-          draw: <span style={{ color: "orange" }}>{counterDraw}</span>
-        </span>
+    <>
+      <div
+        className="wrapper"
+        style={{ display: showtableVsPlayer ? "none" : "block" }}
+      >
+        <div className="board" hidden={showtableVsPlayer}>
+          {box.map((obj, index) => (
+            <Field
+              x={obj === "x" ? 1 : 0}
+              o={obj === "o" ? 1 : 0}
+              key={index}
+              onClick={() => clickField(index)}
+            />
+          ))}
+        </div>
+        <div className="BtnContainer">
+          <button onClick={reset} id="btnR" className="btnH">
+            reset last move
+          </button>
+          <button
+            hidden={false}
+            id="btnListId"
+            className=" btnF"
+            onClick={HistoryList}
+          >
+            Show History
+          </button>
+        </div>
+        <div className="info">
+          <span>
+            Player 1: <span style={{ color: "orange" }}>{player1}:</span>
+            <span style={{ color: "orange" }}>{counterPL1}</span>
+          </span>
+          <span>
+            player 2: <span style={{ color: "orange" }}>{player2}:</span>
+            <span style={{ color: "orange" }}>{counterPL2}</span>
+          </span>
+          <span>
+            draw: <span style={{ color: "orange" }}>{counterDraw}</span>
+          </span>
+        </div>
       </div>
 
       <HistoryWindow
@@ -165,9 +214,10 @@ const BoardForPlayer = ({ player1, player2, showtableVsPlayer }) => {
         winner={winner}
         showHistoryOfGames={showHistoryOfGames}
         setShowHistoryOfGames={setShowHistoryOfGames}
+        setshowtableVsPlayer={setshowtableVsPlayer}
       />
       <EndGame winner={winner} showmodal={showmodal} newGame={newGame} />
-    </div>
+    </>
   );
 };
 export default BoardForPlayer;

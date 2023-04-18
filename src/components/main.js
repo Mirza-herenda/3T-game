@@ -14,7 +14,7 @@ const MainPart = () => {
   //   new Array(9).fill(null);
   // };
   return (
-    <>
+    <div>
       <MainScreen
         showMode={showMode}
         showLogIn={showLogIn}
@@ -39,7 +39,7 @@ const MainPart = () => {
         setshowtableVsPc={setshowtableVsPc}
         setshowtableVsPlayer={setshowtableVsPlayer}
       />
-    </>
+    </div>
   );
 };
 export default MainPart;

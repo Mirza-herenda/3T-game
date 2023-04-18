@@ -32,13 +32,6 @@
 
 }
 
-table td {
-    border: 1px solid orange !important;
-    width: 110px;
-    height: 110px;
-    box-sizing: border-box;
-
-}
 #tableDiv{
     position: fixed;
     top: 50%;
@@ -53,15 +46,22 @@ table td {
    column-gap: 20px;
    margin-top: 5%;
 }
-.btnF{
+.btnF,.btnH{
     border: 1px solid orange !important;
     background-color: gray !important;
     color: black;
 }
-.btnF:hover{
+.btnH:hover{
     background-color: lightgray !important;
 }
 .BtnContainer{
-    justify-content:space-between;
     margin-top: 4%;
+}
+.btnH{
+    float:right;
+}
+@media screen and (max-width:600px) {
+    .wrapper{
+        margin-top: 10%;
+    }
 }

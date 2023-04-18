@@ -2,7 +2,7 @@
     width: 350px;
     height: 200px;
     margin-top: 5%;
-    border: 3px solid rgba(5, 100, 13, 0.774);
+    border: 1px solid orange;
     background-color: rgb(128, 128, 128);
     box-shadow: 10px solid green;
 }
@@ -11,4 +11,7 @@
     margin-left: 10px;
     display: inline-block;
     text-align: center;
+}
+#historyOfGames{
+    color: black !important;
 }

@@ -1,0 +1,7 @@
+.modal-content {
+  background-color: gray !important;
+}
+.modal-header,.modal-body{
+    border-bottom: 1px solid orange;
+}
+

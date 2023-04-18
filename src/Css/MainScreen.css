@@ -1,0 +1,44 @@
+.mainDiv{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+     position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    grid-gap: 10px;
+}
+
+
+span{
+    text-align: center;
+}
+.title{
+    color: red;
+}
+h3{
+    text-align: center;
+    color: orange;
+ justify-content: center;
+ align-items: center;
+}
+.btn1,.btn2{
+    width: 150px;
+    height: 70px;
+}
+.btn1{
+    background-color: gray;
+    border: 1px solid orange;
+}
+.btn2{
+    margin-left: 3px;
+    background-color: gray;
+    border: 1px solid orange;
+}
+.btn1:hover{
+    background-color: lightgray;  
+}
+.btn2:hover{
+    background-color: lightgray;
+}

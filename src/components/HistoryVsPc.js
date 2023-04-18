@@ -1,5 +1,5 @@
-const HistoryWindow = ({
-  HistoryvsPlayer,
+const HistoryWindowVsPc = ({
+  HistoryvsPC,
   showHistoryOfGames,
   setShowHistoryOfGames,
   setshowtableVsPlayer,
@@ -13,16 +13,17 @@ const HistoryWindow = ({
     <div className="container" hidden={showHistoryOfGames}>
       <div id="historyId" className=" historyDiv mx-auto text-light">
         <h5 id="title" className="text-success d-flex justify-content-center">
-          CURRENT GAMES
+          Player vs Personal PC
         </h5>
         <h6 id="historyOfGames">
-          {HistoryvsPlayer.map((index) => (
+          {HistoryvsPC.map((index) => (
             <span id="historyOfGames" className="spanHistory" key={index.id}>
-              <span id="historyOfGames" className="text" key={index.id}>
-                game#: {index.Game}{" "}
+              <span id="historyOfGames" className="text-success" key={index.id}>
+                <span style={{ color: "orange" }}> game#: {index.Game} </span>
               </span>
               {index.day}.{index.month} {index.hour}.{index.minute}{" "}
-              {index.playerOne} vs {index.playerTwo} {index.winner}
+              {index.playerOne} vs {index.PersonalComputer} {index.level}{" "}
+              <span style={{ color: "orange" }}>{index.winner}</span>
             </span>
           ))}
         </h6>
@@ -37,4 +38,4 @@ const HistoryWindow = ({
     </div>
   );
 };
-export default HistoryWindow;
+export default HistoryWindowVsPc;

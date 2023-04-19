@@ -5,6 +5,9 @@
     border: 1px solid rgb(70, 70, 70);
     color: black;
 }
+.input:hover{
+   border:  1px solid orange;
+}
 label {
     margin-top: 10%;
 }

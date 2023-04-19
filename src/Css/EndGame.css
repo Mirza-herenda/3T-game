@@ -4,8 +4,9 @@
   text-align: center;
   position: fixed;
   left: 50%;
-  top: 50%;
+  top: 80% !important;
   transform: translate(-50%,-50%);
+  margin-top: 100px !important;
 }
 .modal-header,.modal-body,.modal-footer{
     border-bottom: 1px solid orange;

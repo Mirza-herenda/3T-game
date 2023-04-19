@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import Field from "./Field";
 import EndGame from "./EndGame";
 import HistoryWindowVsPc from "../components/HistoryVsPc";
@@ -17,6 +17,9 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
   const [counterGames, setCounterGames] = useState(0);
   const [disableHistoryBtn, setDisableHistoryBtn] = useState(false);
 
+  const computerWonRef = useRef(false);
+  const PlayerWonRef = useRef(false);
+
   const linesOfGrid = [
     [0, 1, 2],
     [3, 4, 5],
@@ -27,14 +30,6 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-
-  // useEffect(() => {
-  //   const isDraw = !box.includes(null) && !computerWon && !playerWon;
-  //   if (isDraw) {
-  //     setCounterDraw((counterDraw) => counterDraw + 1);
-  //     console.log("1");
-  //   }
-  // }, [box, computerWon, playerWon, setCounterDraw]);
   useEffect(() => {
     const isPCturn = box.filter((square) => square !== null).length % 2 === 1;
 
@@ -122,8 +117,9 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
     //check player win
 
     const playerWon = checklines("x", "x", "x").length > 0;
+    PlayerWonRef.current = playerWon;
 
-    if (playerWon) {
+    if (PlayerWonRef.current) {
       setDisableHistoryBtn(true);
       setShowmodal(false);
       setwinner(player1 + " is winner ");
@@ -151,8 +147,9 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
     //check pc
 
     const computerWon = checklines("o", "o", "o").length > 0;
+    computerWonRef.current = computerWon;
 
-    if (computerWon) {
+    if (computerWonRef.current) {
       setDisableHistoryBtn(true);
       setwinner("Personal Computer is winner");
       setShowmodal(false);
@@ -176,7 +173,40 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
         },
       ]);
     }
-  }, [box, counterPC, counterPL1, player1, selectedLvl, setCounterDraw]);
+  }, [box, counterPC, counterPL1, player1, selectedLvl, HistoryvsPC]);
+
+  //check draw
+  const isdraw = useMemo(() => {
+    return (
+      !box.includes(null) && !computerWonRef.current && !PlayerWonRef.current
+    );
+  }, [box]);
+  useEffect(() => {
+    if (isdraw) {
+      setDisableHistoryBtn(true);
+      setShowmodal(false);
+      setwinner(" its draw ");
+      setBox(Array(9).fill(null));
+      setCounterDraw((counterDraw) => counterDraw + 1);
+      setHistoryvsPC([
+        ...HistoryvsPC,
+        {
+          id: HistoryvsPC.length + 1,
+          // Game: counterGames + 1,
+          level: selectedLvl,
+          day: new Date().getDate(),
+          month: new Date().getMonth() + 1,
+          hour: new Date().getHours(),
+          minute: new Date().getMinutes(),
+          playerOne: JSON.parse(localStorage.getItem("player1")),
+          PersonalComputer: JSON.parse(
+            localStorage.getItem("Personal Computer")
+          ),
+          winner: "draw",
+        },
+      ]);
+    }
+  }, [isdraw]);
 
   function clickField(index) {
     if (box[index] !== null) {

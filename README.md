@@ -1,8 +1,12 @@
-\*TABLE OF CONTENTS
+# TABLE OF CONTENTS
 
-Introduction
-Description
-Installation and Setup Instructions
+## Introduction
+
+## Description
+
+## Installation and Setup Instructions
+
+---
 
 ## Introduction
 
@@ -38,7 +42,8 @@ Installation and Setup Instructions
 the application was done in [React] in combination with [javaScript], [Css]. clone down this Repo.
 You will need [node] and [npm] installed on your maschine.
 
-installation:
+## installation:
+
 npm install
 
 to run test:

@@ -15,7 +15,7 @@ const HistoryWindowVsPc = ({
         <h5 id="title" className="text">
           Player vs Personal PC
         </h5>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>Game #</th>

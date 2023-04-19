@@ -44,7 +44,7 @@ const HistoryWindowVsPc = ({
           </tbody>
         </table>
         <button id="closeBtnId" className="closeBtn" onClick={closeBtn}>
-          x
+          close
         </button>
       </div>
     </div>

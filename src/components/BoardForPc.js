@@ -16,6 +16,8 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
   const [messageClick, setmessageClick] = useState("");
   const [counterGames, setCounterGames] = useState(0);
   const [disableHistoryBtn, setDisableHistoryBtn] = useState(false);
+  const [isPlayerTurn, setIsPlayerTurn] = useState(false);
+  const [isComputerTurn, setIsComputerTurn] = useState(false);
 
   const computerWonRef = useRef(false);
   const PlayerWonRef = useRef(false);
@@ -39,6 +41,8 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
       setBox([...newField]);
     };
     if (isPCturn) {
+      setIsPlayerTurn(false);
+      setIsComputerTurn(true);
       if (selectedLvl === "easy") {
         const emptyField = box
           .map((square, index) => (square === null ? index : null))
@@ -173,7 +177,16 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
         },
       ]);
     }
-  }, [box, counterPC, counterPL1, player1, selectedLvl, HistoryvsPC]);
+  }, [
+    box,
+    counterPC,
+    counterPL1,
+    player1,
+    selectedLvl,
+    HistoryvsPC,
+    isPlayerTurn,
+    isComputerTurn,
+  ]);
 
   //check draw
   const isdraw = useMemo(() => {
@@ -218,10 +231,13 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
       box.filter((square) => square !== null).length % 2 === 0;
 
     if (isPlayerTurn && !winner && !box[index]) {
+      setIsPlayerTurn(true);
+      setIsComputerTurn(false);
       let newField = box.slice();
       newField[index] = "x";
       setBox([...newField]);
       setLastMoveIndex(index);
+      console.log("player");
     }
   }
 
@@ -236,6 +252,8 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
     newField[lastMoveIndex] = null;
     setBox(newField);
     setLastMoveIndex(null);
+    setIsComputerTurn(true);
+    setIsPlayerTurn(false);
   };
   const HistoryList = () => {
     setShowHistoryOfGames(false);

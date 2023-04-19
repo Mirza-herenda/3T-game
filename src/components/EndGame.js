@@ -16,7 +16,7 @@ const EndGame = ({ winner, newGame, showmodal }) => {
           <button
             hidden={false}
             id="funcId2"
-            className="btnF btn-outline-success bg-secondary text-light"
+            className="btnF"
             onClick={newGame}
           >
             Wanna try again

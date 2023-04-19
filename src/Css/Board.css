@@ -60,6 +60,9 @@
 .btnH:hover{
     background-color: lightgray !important;
 }
+.btnF:hover{
+    background-color: lightgray !important;
+}
 .BtnContainer{
     margin-top: 4%;
 }

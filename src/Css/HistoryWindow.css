@@ -12,6 +12,7 @@
     flex-direction: column;
     place-items: center;
     row-gap: 10%;
+    overflow: auto;
 }
 table{
     border: 1px solid rgba(255, 166, 0, 0.658);
@@ -35,11 +36,11 @@ table th{
     color: black !important;
 }
 .closeBtn{
-    width: 27px;
+    width: 50px;
     height: 30px;
     background-color: gray;
     color: white;
-    position: fixed;
+    position: absolute;
     bottom: 0px;
     right: 0px;
     border-left: 1px solid orange;
@@ -53,6 +54,7 @@ color: orange;
 @media screen and (max-width:600px) {
     .historyDiv{
         width: 350px;
+        overflow: auto;
     }
     table th{
         font-size: medium;
@@ -61,7 +63,9 @@ color: orange;
         font-size: medium;
     }
     table{
-        margin-left: 2%;
+        margin: 0 auto !important;
+        width: 35vh;
+        
     }
     
 }

@@ -31,23 +31,39 @@ h3{
     background-color: gray;
     border: 1px solid orange;
     color: black;
+    transition: all 0.5s ease-in-out;
 }
 .btn2{
-    margin-left: 3px;
     background-color: gray;
     border: 1px solid orange;
     color: black;
+    transition: all 0.5s ease-in-out;
+
+}
+.btnDiv{
+    display: flex;
+    width: 300px;
+    gap: 10px;
 }
 .btn1:hover{
-    background-color: lightgray;  
+    color: orange; 
+    background-color: gray; 
 }
 .btn2:hover{
-    background-color: lightgray;
+    color: orange;
+    background-color: gray;
 }
 
 /*media quary*/
 
 @media screen and (max-width:600px) {
+    .btnDiv{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
    .btn2{
     margin-top: 6%;
    }

@@ -12,6 +12,12 @@
     border-bottom: 1px solid orange;
 
 }
+.modal-footer{
+  display: flex !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
 @media  screen and (max-width:600px) {
   .modal-content{
    margin-top: 100px !important;

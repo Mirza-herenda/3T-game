@@ -1,18 +1,10 @@
 import React from "react";
 import "../Css/MainScreen.css";
 
-function MainScreen({
-  setshowLogIn,
-  setshowLogInPc,
-  showMode,
-  setShowMode,
-  setshowtableVsPlayer,
-  setshowtableVsPc,
-}) {
+function MainScreen({ setshowLogIn, setshowLogInPc, showMode, setShowMode }) {
   const showGameVsPc = () => {
     setshowLogInPc(false);
     setShowMode(true);
-    console.log("test pc");
   };
   const showGamePvsP = () => {
     setshowLogIn(false);

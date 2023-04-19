@@ -27,18 +27,18 @@ const HistoryWindow = ({
             </tr>
           </thead>
           <tbody>
-            {HistoryvsPlayer.map((index, i) => (
-              <tr key={index.id} className="tableRow">
-                <td>{i + 1}</td>
+            {HistoryvsPlayer.map((element, index) => (
+              <tr key={element.id} className="tableRow">
+                <td>{index + 1}</td>
                 <td>
-                  {index.month}.{index.day}
+                  {element.month}.{element.day}
                 </td>
                 <td>
-                  {index.hour}.{index.minute}
+                  {element.hour}.{element.minute}
                 </td>
-                <td>{index.playerOne}</td>
-                <td>{index.playerTwo}</td>
-                <td style={{ color: "orange" }}>{index.winner}</td>
+                <td>{element.playerOne}</td>
+                <td>{element.playerTwo}</td>
+                <td style={{ color: "orange" }}>{element.winner}</td>
               </tr>
             ))}
           </tbody>

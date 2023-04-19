@@ -22,23 +22,23 @@ const HistoryWindowVsPc = ({
               <th>Date</th>
               <th>Time</th>
               <th>Player One</th>
-              <th>Level</th>
+              <th>level</th>
               <th>Winner</th>
             </tr>
           </thead>
           <tbody>
-            {HistoryvsPC.map((index, i) => (
-              <tr key={index.id} className="tableRow">
-                <td>{i + 1}</td>
+            {HistoryvsPC.map((element, index) => (
+              <tr key={element.id} className="tableRow">
+                <td>{index + 1}</td>
                 <td>
-                  {index.month}.{index.day}
+                  {element.month}.{element.day}
                 </td>
                 <td>
-                  {index.hour}.{index.minute}
+                  {element.hour}.{element.minute}
                 </td>
-                <td>{index.playerOne}</td>
-                <td>{index.level}</td>
-                <td style={{ color: "orange" }}>{index.winner}</td>
+                <td>{element.playerOne}</td>
+                <td>{element.level}</td>
+                <td style={{ color: "orange" }}>{element.winner}</td>
               </tr>
             ))}
           </tbody>

@@ -10,15 +10,12 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
   const [counterPL1, setCounterPL1] = useState(0);
   const [counterPC, setCounterPC] = useState(0);
   const [counterDraw, setCounterDraw] = useState(0);
-  const [checkisPlayerTurn, setCheckIsPlayerTurn] = useState(true);
   const [lastMoveIndex, setLastMoveIndex] = useState(null);
   const [HistoryvsPC, setHistoryvsPC] = useState([]);
   const [showHistoryOfGames, setShowHistoryOfGames] = useState(true);
-  const [checkPcTurn, setcheckPcTurn] = useState(true);
   const [messageClick, setmessageClick] = useState("");
-  const [playerWom, setplayerWom] = useState();
-  const [computerWon, setcomputerWon] = useState();
   const [counterGames, setCounterGames] = useState(0);
+  const [disableHistoryBtn, setDisableHistoryBtn] = useState(false);
 
   const linesOfGrid = [
     [0, 1, 2],
@@ -31,6 +28,13 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
     [2, 4, 6],
   ];
 
+  // useEffect(() => {
+  //   const isDraw = !box.includes(null) && !computerWon && !playerWon;
+  //   if (isDraw) {
+  //     setCounterDraw((counterDraw) => counterDraw + 1);
+  //     console.log("1");
+  //   }
+  // }, [box, computerWon, playerWon, setCounterDraw]);
   useEffect(() => {
     const isPCturn = box.filter((square) => square !== null).length % 2 === 1;
 
@@ -40,7 +44,6 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
       setBox([...newField]);
     };
     if (isPCturn) {
-      setcheckPcTurn(true);
       if (selectedLvl === "easy") {
         const emptyField = box
           .map((square, index) => (square === null ? index : null))
@@ -118,21 +121,19 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
 
     //check player win
 
-    // const playerWom = checklines("x", "x", "x").length > 0;
-    setplayerWom(checklines("x", "x", "x").length > 0);
+    const playerWon = checklines("x", "x", "x").length > 0;
 
-    if (playerWom) {
+    if (playerWon) {
+      setDisableHistoryBtn(true);
       setShowmodal(false);
       setwinner(player1 + " is winner ");
       setBox(Array(9).fill(null));
       setCounterPL1(counterPL1 + 1);
-
-      // setCounterGames(counterGames + 1);
       setHistoryvsPC([
         ...HistoryvsPC,
         {
           id: HistoryvsPC.length + 1,
-          Game: counterGames + 1,
+          // Game: counterGames + 1,
           level: selectedLvl,
           day: new Date().getDate(),
           month: new Date().getMonth() + 1,
@@ -145,34 +146,14 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
           winner: player1,
         },
       ]);
-
-      localStorage.setItem(
-        "History",
-        JSON.stringify([
-          ...HistoryvsPC,
-          {
-            id: HistoryvsPC.length + 1,
-            Game: counterGames + 1,
-            level: selectedLvl,
-            day: new Date().getDate(),
-            month: new Date().getMonth() + 1,
-            hour: new Date().getHours(),
-            minute: new Date().getMinutes(),
-            playerOne: JSON.parse(localStorage.getItem("player1")),
-            PersonalComputer: JSON.parse(
-              localStorage.getItem("personal Computer")
-            ),
-            winner: player1,
-          },
-        ])
-      );
     }
 
     //check pc
 
-    // const computerWon = checklines("o", "o", "o").length > 0;
-    setcomputerWon(checklines("o", "o", "o").length > 0);
+    const computerWon = checklines("o", "o", "o").length > 0;
+
     if (computerWon) {
+      setDisableHistoryBtn(true);
       setwinner("Personal Computer is winner");
       setShowmodal(false);
       setBox(Array(9).fill(null));
@@ -181,7 +162,7 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
         ...HistoryvsPC,
         {
           id: HistoryvsPC.length + 1,
-          Game: counterGames + 1,
+          // Game: counterGames + 1,
           level: selectedLvl,
           day: new Date().getDate(),
           month: new Date().getMonth() + 1,
@@ -194,48 +175,8 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
           winner: "Personal Computer",
         },
       ]);
-
-      localStorage.setItem(
-        "History",
-        JSON.stringify([
-          ...HistoryvsPC,
-          {
-            id: HistoryvsPC.length + 1,
-            Game: counterGames + 1,
-            level: selectedLvl,
-            day: new Date().getDate(),
-            month: new Date().getMonth() + 1,
-            hour: new Date().getHours(),
-            minute: new Date().getMinutes(),
-            playerOne: JSON.parse(localStorage.getItem("player1")),
-            PersonalComputer: JSON.parse(
-              localStorage.getItem("personal Computer")
-            ),
-            winner: "Personal Computer",
-          },
-        ])
-      );
     }
-  }, [
-    box,
-    counterPC,
-    counterPL1,
-    player1,
-    selectedLvl,
-    // setCounterDraw,
-    counterGames,
-    HistoryvsPC,
-    checkPcTurn,
-    computerWon,
-    playerWom,
-  ]);
-  //check draw
-  // useEffect(() => {
-  //   if (!box.includes(null) && !computerWon && !playerWom) {
-  //     setCounterDraw(counterDraw + 1);
-  //     setwinner("its draw");
-  //   }
-  // }, [box, computerWon, playerWom]);
+  }, [box, counterPC, counterPL1, player1, selectedLvl, setCounterDraw]);
 
   function clickField(index) {
     if (box[index] !== null) {
@@ -257,15 +198,14 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
   const newGame = () => {
     setwinner("");
     setShowmodal(true);
+    setDisableHistoryBtn(false);
   };
 
   const reset = () => {
     let newField = box.slice();
     newField[lastMoveIndex] = null;
     setBox(newField);
-    setCheckIsPlayerTurn(true);
     setLastMoveIndex(null);
-    setcheckPcTurn(false);
   };
   const HistoryList = () => {
     setShowHistoryOfGames(false);
@@ -300,6 +240,7 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
             id="btnListId"
             className=" btnF"
             onClick={HistoryList}
+            disabled={disableHistoryBtn}
           >
             Show History
           </button>
@@ -333,7 +274,6 @@ function BoardForPc({ showtableVsPc, player1, selectedLvl, setshowtableVsPc }) {
         setshowtableVsPc={setshowtableVsPc}
         setCounterGames={setCounterGames}
         setCounterDraw={setCounterDraw}
-        checkisPlayerTurn={checkisPlayerTurn}
       />
 
       <EndGame winner={winner} showmodal={showmodal} newGame={newGame} />

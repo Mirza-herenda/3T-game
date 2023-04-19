@@ -1,32 +1,42 @@
-*TABLE OF CONTENTS
+\*TABLE OF CONTENTS
 
 Introduction
-description
+Description
 Installation and Setup Instructions
 
-Introduction
+## Introduction
+
 TIC TAC TOE is a game well known to younger and older people. Two players participate, one is X, the other is 0. The winner is the one who has three fields with their sign (diagonal, row, or across).
 
-description
-As we mentioned in the introduction. The game is based on two players who have to enter their names before the game itself.
+## Description
 
-The first player gets the letter X while the second gets the letter O.
+At the beginning, the user chooses which mode to play:
 
-The goal is for one of the mentioned players to have three fields filled with their sign
+### First mode:
 
-Victory is achieved if one of the players fills the above fields diagonally, across, or down.
-In the event that all fields are filled without a winner, the result is a DRAW
+The user needs to enter their name and choose which level of difficulty they want to play.
+If they choose "easy," the PC randomly fills in the fields with "O."
+If they choose "medium," the PC selects the fields that are still empty in the user's row.
+If they choose "hard," the PC selects the fields that are still empty in its own rows.
 
-The winner is announced with a message in the modal.
+### Second mode:
 
+The user enters their name, and the opponent is another user who also enters their name. This mode is based on the regular way of playing, where the winner is the first to have the same symbol in a diagonal, row, or column
 
-we also have three buttons,
-The first is a new game that allows the fields to be agreed at the beginning, while the results remain saved in the header and list.
-The second button is reset, which resets the entire game to the beginning.
-The third button is List, where we can see the history of previous games
+Below the 3x3 grid, there are two buttons:
+
+### History button:
+
+which displays the history of previous rounds.
+
+### Reset button:
+
+which allows the user to undo their last move
 
 Installation and Setup Instructions
-the application was done in [React] in combination with [javaScript], [Css], [Bootsrap]. clone down this Repo.You will need [node] and [npm] installed on your maschine.
+
+the application was done in [React] in combination with [javaScript], [Css]. clone down this Repo.
+You will need [node] and [npm] installed on your maschine.
 
 installation:
 npm install
@@ -38,7 +48,4 @@ Start server
 npm start
 
 to visit this App
-Open http://localhost:3000 to view it in your browser.
-
-imports:
-["autoprefixer": "^10.4.5"], ["bootstrap": "5.1"] , ["react": "^18.1.0"], ["react-bootstrap": "^2.4.0"] , ["react-dom": "^18.1.0"], ["react-scripts": "5.0.1"], [ "web-vitals": "^2.1.4"]
+Open https://tictactoe-v1-0.netlify.app/ to view it in your browser.

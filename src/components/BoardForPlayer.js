@@ -22,7 +22,6 @@ const BoardForPlayer = ({
   const [lastMoveIndex, setlastMoveIndex] = useState(null);
   const [checkisPlayerTurn1, setcheckisPlayerTurn1] = useState(true);
   const [messageClick, setmessageClick] = useState("");
-  const [disabledBtn, setdisabledBtn] = useState(false);
   const linesOfGrid = [
     [0, 1, 2],
     [3, 4, 5],
@@ -90,7 +89,7 @@ const BoardForPlayer = ({
         ...HistoryvsPlayer,
         {
           id: HistoryvsPlayer.length + 1,
-          Game: counterGames + 1,
+          // Game: counterGames + 1,
           day: new Date().getDate(),
           month: new Date().getMonth() + 1,
           hour: new Date().getHours(),
@@ -110,7 +109,7 @@ const BoardForPlayer = ({
         ...HistoryvsPlayer,
         {
           id: HistoryvsPlayer.length + 1,
-          Game: counterGames + 1,
+          // Game: counterGames + 1,
           day: new Date().getDate(),
           month: new Date().getMonth() + 1,
           hour: new Date().getHours(),
@@ -127,7 +126,7 @@ const BoardForPlayer = ({
           ...HistoryvsPlayer,
           {
             id: HistoryvsPlayer.length + 1,
-            Game: counterGames + 1,
+            // Game: counterGames + 1,
             day: new Date().getDate(),
             month: new Date().getMonth() + 1,
             hour: new Date().getHours(),
@@ -148,7 +147,7 @@ const BoardForPlayer = ({
         ...HistoryvsPlayer,
         {
           id: HistoryvsPlayer.length + 1,
-          Game: counterGames + 1,
+          // Game: counterGames + 1,
           day: new Date().getDate(),
           month: new Date().getMonth() + 1,
           hour: new Date().getHours(),
@@ -233,6 +232,7 @@ const BoardForPlayer = ({
         showHistoryOfGames={showHistoryOfGames}
         setShowHistoryOfGames={setShowHistoryOfGames}
         setshowtableVsPlayer={setshowtableVsPlayer}
+        setCounterGames={setCounterGames}
       />
       <EndGame winner={winner} showmodal={showmodal} newGame={newGame} />
     </>

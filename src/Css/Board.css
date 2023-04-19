@@ -13,9 +13,7 @@
     text-align: center;
     justify-content: center;
     color: orange;
-    position: fixed;
-  z-index: 1;
-  top: 26%;
+    position: relative;
 }
 .Field{
     background-color: gray;

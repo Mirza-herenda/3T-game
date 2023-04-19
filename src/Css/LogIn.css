@@ -45,6 +45,7 @@ color: orange;
     background-color: gray;
     margin-top: 20px;
    margin-left: 1% !important;
+   color: black;
 }
 .btnStart:hover{
     background-color: lightgray;

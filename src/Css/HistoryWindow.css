@@ -36,15 +36,14 @@ table th{
     color: black !important;
 }
 .closeBtn{
-    width: 50px;
+    width: 60px;
     height: 30px;
     background-color: gray;
     color: white;
-    position: absolute;
+    position: relative;
     bottom: 0px;
     right: 0px;
-    border-left: 1px solid orange;
-    border-top:1px solid orange ;
+    border:1px solid orange ;
     color: black;
 }
 .closeBtn:hover{
@@ -64,7 +63,7 @@ color: orange;
     }
     table{
         margin: 0 auto !important;
-        width: 35vh;
+        width: 40vh;
         
     }
     

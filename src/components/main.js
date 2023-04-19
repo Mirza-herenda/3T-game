@@ -9,6 +9,7 @@ const MainPart = () => {
   const [showLogInPc, setshowLogInPc] = useState(true);
   const [showtableVsPc, setshowtableVsPc] = useState(true); //hidden na true
   const [showtableVsPlayer, setshowtableVsPlayer] = useState(true);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   // const fillField = () => {
   //   new Array(9).fill(null);
@@ -31,6 +32,7 @@ const MainPart = () => {
         showtableVsPlayer={showtableVsPlayer}
         setshowtableVsPc={setshowtableVsPc}
         setshowtableVsPlayer={setshowtableVsPlayer}
+        buttonDisabled={buttonDisabled}
       />
       <LogInScreenPc
         showLogInPc={showLogInPc}

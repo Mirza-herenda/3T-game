@@ -13,7 +13,7 @@
 }
 @media  screen and (max-width:600px) {
   .modal-content{
-    top:70%
+   margin-top: 100px !important;
   }
   
 }

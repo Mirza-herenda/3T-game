@@ -1,6 +1,6 @@
 .historyDiv {
     width: 500px;
-    height: 200px;
+    height: 400px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -8,10 +8,12 @@
     border: 1px solid orange;
     background-color: rgb(128, 128, 128);
     box-shadow: 10px solid green;
-    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    row-gap: 10%;
 }
 table{
-    margin-left: 4%;
     border: 1px solid rgba(255, 166, 0, 0.658);
 }
 table th{
@@ -40,6 +42,12 @@ table th{
     position: fixed;
     bottom: 0px;
     right: 0px;
+    border-left: 1px solid orange;
+    border-top:1px solid orange ;
+    color: black;
+}
+.closeBtn:hover{
+color: orange;
 }
 
 @media screen and (max-width:600px) {

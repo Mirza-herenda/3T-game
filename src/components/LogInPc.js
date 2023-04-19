@@ -41,10 +41,9 @@ const LogInScreenPc = ({
     if (player1 === "") {
       setMsg(<span className="emptySpan">please enter name</span>);
     } else if (regex.test(player1) === false) {
-      setMsg(<span className="numSpan">numbers are not allowed</span>);
+      setMsg(<span className="emptySpan">numbers are not allowed</span>);
       setBtnDisabled(true);
     } else if (selectedLvl === null) {
-      console.log("lvl nije izabran");
       setMsg2(<span className="ErrorSpan">you need to choose level</span>);
     } else {
       setshowLogInPc(true);
@@ -52,7 +51,6 @@ const LogInScreenPc = ({
       setshowtableVsPlayer(true);
       localStorage.setItem("player1", JSON.stringify(player1));
       localStorage.setItem("Personal Computer", JSON.stringify("PC"));
-      console.log("ok");
       setMsg(
         <span hidden={false} className=" bg-light text-success">
           OK

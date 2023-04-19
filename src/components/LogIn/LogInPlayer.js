@@ -6,6 +6,7 @@ const LogInPlayer = ({
   setshowtableVsPc,
   setshowtableVsPlayer,
   setshowLogIn,
+  buttonDisabled,
 }) => {
   const [player1, setPlayer1] = useState("");
   const [player2, setPlayer2] = useState("");
@@ -14,14 +15,10 @@ const LogInPlayer = ({
   const BtnStartPc = (e) => {
     const regex = /^[A-Za-z]+$/;
     if (player1 === "" || player2 === "") {
-      setMsg(
-        <span className="  bg-light text-danger">empty is not allowed</span>
-      );
+      setMsg(<span className="emptySpan">please enter name</span>);
       //setBtnDisabled(true);
     } else if (regex.test(player1) === false) {
-      setMsg(
-        <span className="  bg-light text-danger">numbers are not allowed</span>
-      );
+      setMsg(<span className="emptySpan">numbers are not allowed</span>);
       setBtnDisabled(true);
     } else {
       setshowtableVsPc(true);
@@ -84,6 +81,7 @@ const LogInPlayer = ({
         showLogIn
         showtableVsPlayer={showtableVsPlayer}
         setshowtableVsPlayer={setshowtableVsPlayer}
+        buttonDisabled={buttonDisabled}
       />
     </>
   );

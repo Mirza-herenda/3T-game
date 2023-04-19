@@ -9,6 +9,14 @@
     width: 300px;
     margin: 150px auto 0;
 }
+.MessageClick{
+    text-align: center;
+    justify-content: center;
+    color: orange;
+    position: fixed;
+  z-index: 1;
+  top: 26%;
+}
 .Field{
     background-color: gray;
     border: 1px solid orange;
@@ -63,5 +71,9 @@
 @media screen and (max-width:600px) {
     .wrapper{
         margin-top: 10%;
+    }
+    .MessageClick{
+        font-size: medium;
+        position: relative;
     }
 }

@@ -28,7 +28,7 @@ const HistoryWindow = ({
           </thead>
           <tbody>
             {HistoryvsPlayer.map((index, i) => (
-              <tr key={i.id} className="tableRow">
+              <tr key={index.id} className="tableRow">
                 <td>{i + 1}</td>
                 <td>
                   {index.month}.{index.day}

@@ -17,7 +17,6 @@ function MainScreen({
   const showGamePvsP = () => {
     setshowLogIn(false);
     setShowMode(true);
-    console.log("test pl");
   };
   return (
     <>

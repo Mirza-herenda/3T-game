@@ -19,6 +19,10 @@ const BoardForPlayer = ({
   const [HistoryvsPlayer, setHistoryvsPlayer] = useState([]);
   const [counterGames, setCounterGames] = useState(0);
   const [showHistoryOfGames, setShowHistoryOfGames] = useState(true);
+  const [lastMoveIndex, setlastMoveIndex] = useState(null);
+  const [checkisPlayerTurn1, setcheckisPlayerTurn1] = useState(true);
+  const [messageClick, setmessageClick] = useState("");
+  const [disabledBtn, setdisabledBtn] = useState(false);
   const linesOfGrid = [
     [0, 1, 2],
     [3, 4, 5],
@@ -31,11 +35,28 @@ const BoardForPlayer = ({
   ];
 
   function clickField(index) {
+    if (box[index] !== null) {
+      setmessageClick("field is already taken");
+      return;
+    }
+    setmessageClick("");
     const isPlayer1Turn =
       box.filter((square) => square !== null).length % 2 === 0;
     const isPlayer2Turn =
       box.filter((square) => square !== null).length % 2 === 1;
 
+    if (isPlayer1Turn && !winner && !box[index]) {
+      let newField = box.slice();
+      newField[index] = "x";
+      setBox([...newField]);
+      setlastMoveIndex(index);
+    }
+    if (isPlayer2Turn && !winner && !box[index]) {
+      let newField = box.slice();
+      newField[index] = "o";
+      setBox([...newField]);
+      setlastMoveIndex(index);
+    }
     if (isPlayer1Turn) {
       let newField = box.slice();
       newField[index] = "x";
@@ -68,7 +89,7 @@ const BoardForPlayer = ({
       setHistoryvsPlayer([
         ...HistoryvsPlayer,
         {
-          id: counterGames + 1,
+          id: HistoryvsPlayer.length + 1,
           Game: counterGames + 1,
           day: new Date().getDate(),
           month: new Date().getMonth() + 1,
@@ -82,13 +103,13 @@ const BoardForPlayer = ({
     }
     if (player1Wom) {
       setShowmodal(false);
-      setwinner(player1 + "is winner");
+      setwinner(player1 + " is winner");
       setBox(Array(9).fill(null));
       setCounterPL1(counterPL1 + 1);
       setHistoryvsPlayer([
         ...HistoryvsPlayer,
         {
-          id: counterGames + 1,
+          id: HistoryvsPlayer.length + 1,
           Game: counterGames + 1,
           day: new Date().getDate(),
           month: new Date().getMonth() + 1,
@@ -105,7 +126,7 @@ const BoardForPlayer = ({
         JSON.stringify([
           ...HistoryvsPlayer,
           {
-            id: counterGames + 1,
+            id: HistoryvsPlayer.length + 1,
             Game: counterGames + 1,
             day: new Date().getDate(),
             month: new Date().getMonth() + 1,
@@ -120,13 +141,13 @@ const BoardForPlayer = ({
     }
     if (player2Wom) {
       setShowmodal(false);
-      setwinner(player2 + "is winner");
+      setwinner(player2 + " is winner");
       setBox(Array(9).fill(null));
       setCounterPL2(counterPL2 + 1);
       setHistoryvsPlayer([
         ...HistoryvsPlayer,
         {
-          id: counterGames + 1,
+          id: HistoryvsPlayer.length + 1,
           Game: counterGames + 1,
           day: new Date().getDate(),
           month: new Date().getMonth() + 1,
@@ -145,20 +166,16 @@ const BoardForPlayer = ({
     setShowmodal(true);
   };
 
-  function reset() {
-    // if (checkisPlayerTurn) {
-    //   let newField = box.slice();
-    //   newField[lastMoveIndex] = null;
-    //   setBox(newField);
-    //   setIsPlayerTurn(false);
-    //   setLastMoveIndex(null);
-    // }
-  }
+  const reset = () => {
+    let newField = box.slice();
+    newField[lastMoveIndex] = null;
+    setBox(newField);
+    setcheckisPlayerTurn1(checkisPlayerTurn1);
+  };
   const HistoryList = () => {
     setShowHistoryOfGames(false);
     setshowtableVsPlayer(true);
     setShowmodal(true);
-    console.log(HistoryvsPlayer);
   };
 
   return (
@@ -167,6 +184,7 @@ const BoardForPlayer = ({
         className="wrapper"
         style={{ display: showtableVsPlayer ? "none" : "block" }}
       >
+        <span className="MessageClick">{messageClick}</span>
         <div className="board" hidden={showtableVsPlayer}>
           {box.map((obj, index) => (
             <Field

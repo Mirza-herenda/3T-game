@@ -30,11 +30,13 @@ h3{
 .btn1{
     background-color: gray;
     border: 1px solid orange;
+    color: black;
 }
 .btn2{
     margin-left: 3px;
     background-color: gray;
     border: 1px solid orange;
+    color: black;
 }
 .btn1:hover{
     background-color: lightgray;  
